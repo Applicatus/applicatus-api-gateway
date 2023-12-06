@@ -23,9 +23,7 @@ jobs:
         echo "Build complete."
       env:
         JAVA_HOME: ${{ matrix.java_home }}
-      strategy:
-        matrix:
-          java_home: ["/usr/lib/jvm/java-8-openjdk-amd64", "/usr/lib/jvm/java-11-openjdk-amd64"]
+     
 
     - name: Unit Test
       run: |
