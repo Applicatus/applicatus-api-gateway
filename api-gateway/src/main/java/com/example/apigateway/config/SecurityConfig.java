@@ -15,18 +15,55 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.server.SecurityWebFilterChain;
 import org.springframework.http.HttpMethod;
-import reactor.core.publisher.Mono;
-import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
-import org.springframework.security.oauth2.server.resource.authentication.ReactiveJwtAuthenticationConverterAdapter;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.cors.reactive.CorsWebFilter;
+import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
+
+import java.util.Arrays;
+import java.util.List;
+//import org.springframework.web.servlet.config.annotation.CorsRegistry;
+//import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+//import reactor.core.publisher.Mono;
+//import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
+//import org.springframework.security.oauth2.server.resource.authentication.ReactiveJwtAuthenticationConverterAdapter;
 
 @Configuration
 @EnableWebFluxSecurity
+//@CrossOrigin(origins = "http://localhost:3000")
 //@RequireArgsConstructor
 public class SecurityConfig {
+
+
+//    @Bean
+//    public CorsWebFilter corsFilter() {
+//        org.springframework.web.cors.CorsConfiguration corsConfiguration = new org.springframework.web.cors.CorsConfiguration();
+//        corsConfiguration.setAllowCredentials(true);
+//        corsConfiguration.getAllowedOriginPatterns();
+////        corsConfiguration.addAllowedOrigin("*");
+//        corsConfiguration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD"));
+//        corsConfiguration.addAllowedHeader("origin");
+//        corsConfiguration.addAllowedHeader("content-type");
+//        corsConfiguration.addAllowedHeader("accept");
+//        corsConfiguration.addAllowedHeader("authorization");
+//        corsConfiguration.addAllowedHeader("cookie");
+//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//        source.registerCorsConfiguration("/**", corsConfiguration);
+//        return new CorsWebFilter(source);
+//    }
 
 //    private final AuthTokenFilter jwtFilter;
 //    private final AuthenticationProvider authenticationProvider;
 //
+
+//        @Bean
+//    public WebMvcConfigurer corsConfigurer() {
+//        return new WebMvcConfigurer() {
+//            @Override
+//            public void addCorsMappings(CorsRegistry registry) {
+//                registry.addMapping("/**").allowedOrigins("http://localhost:8072","http://localhost:3000");
+//            }
+//        };
+//    }
 
     @Bean
     public SecurityWebFilterChain securityFilterChain(ServerHttpSecurity http) {
@@ -53,8 +90,8 @@ public class SecurityConfig {
 //                        .pathMatchers(HttpMethod.DELETE, "/inventory-service/api/invertory/**").hasRole("ADMIN")
 //                        .pathMatchers(HttpMethod.GET, "/post-service/api/product/getAll").permitAll()
                                 .pathMatchers(HttpMethod.POST, "/user-service/api/auth/register").permitAll()
+                                .pathMatchers(HttpMethod.POST, "/user-service/api/auth/login").permitAll()
                                 .pathMatchers(HttpMethod.POST, "/user-service/api/auth/**").permitAll()
-
                                 .pathMatchers(HttpMethod.GET, "/actuator/**").permitAll()
                                 .pathMatchers(HttpMethod.GET, "/actuator/gateway/routes").permitAll()
                 );
@@ -71,8 +108,8 @@ public class SecurityConfig {
 //                                (jwt -> jwt
 //                                        .jwtAuthenticationConverter(grantedAuthoritiesExtractor())
 //                                )
-
-        http.csrf(ServerHttpSecurity.CsrfSpec::disable);
+        http.httpBasic(httpBasicSpec -> httpBasicSpec.disable());
+        http.csrf(csrfSpec -> csrfSpec.disable().formLogin(formLoginSpec -> formLoginSpec.disable()));
 
         return http.build();
     }
