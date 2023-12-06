@@ -35,7 +35,7 @@ jobs:
         run: |
             echo dir
             cd ../
-            cd /.api-gateway
+            cd /api-gateway
             ./gradlew build
 
     # name: Unit Test
