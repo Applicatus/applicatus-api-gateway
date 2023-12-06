@@ -25,7 +25,7 @@ stages:          # List of stages for jobs, and their order of execution
 build-api-gateway: # This job runs in the build stage,which runs first.
   stage: build
   script:
-    - echo "Running Build"
+    - echo "Running Build for Gateway"
     - echo $JAVA_HOME
     - cd api-gateway
     - chmod +x gradlew
