@@ -15,6 +15,9 @@ jobs:
 
     - name: Build API Gateway
       run: |
+        echo "Running Build"
+        cd api-gateway
+        mvn clean install -DskipTests -e
         echo "Running Build for Gateway Test"
         echo $JAVA_HOME
         cd api-gateway
