@@ -21,9 +21,6 @@ jobs:
         chmod +x gradlew
         ./gradlew clean build
         echo "Build complete."
-      env:
-        JAVA_HOME: ${{ matrix.java_home }}
-     
 
     - name: Unit Test
       run: |
