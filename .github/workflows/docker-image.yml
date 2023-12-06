@@ -37,9 +37,8 @@ jobs:
             cd ../
             echo "switched `pwd`
             cd ../
-            cd /applicatus-api-gateway
+            echo "switched `pwd`
             cd /api-gateway
-            
             ./gradlew build
 
     # name: Unit Test
