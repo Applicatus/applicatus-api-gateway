@@ -14,5 +14,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - name: Change gateway
+      run: cd api-gateway
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag evaldas483:$(date +%s)
