@@ -24,11 +24,11 @@ jobs:
     #     ./gradlew clean build
     #     echo "Build complete."
 
-    - name: Set up Java
-      uses: actions/setup-java@v2
-      with:
-        distribution: 'adopt'
-        java-version: '17'
+    # - name: Set up Java
+    #   uses: actions/setup-java@v2
+    #   with:
+    #     distribution: 'adopt'
+    #     java-version: '17'
 
   build-gradle-project:
       runs-on: self-hosted
