@@ -33,7 +33,9 @@ jobs:
         uses: gradle/gradle-build-action@v2
       - name: Run build with Gradle Wrapper
         run: |
-            cd api-gateway
+            echo dir
+            cd ..
+            cd ..
             ./gradlew build
 
     # name: Unit Test
