@@ -34,8 +34,8 @@ jobs:
       - name: Run build with Gradle Wrapper
         run: |
             echo dir
-            cd ..
-            cd ..
+            cd ../
+            # cd ../
             ./gradlew build
 
     # name: Unit Test
