@@ -33,10 +33,7 @@ jobs:
         uses: gradle/gradle-build-action@v2
       - name: Run build with Gradle Wrapper
         run: |
-            echo "switched `pwd`"
-            cd ../
-            echo "switched `pwd`"
-            cd ../
+            echo tree -fiF | grep -E -e '^./[[:alnum:]]+/[[:alnum:]]+/[[:alnum:]]+/[[:alnum:]]+$' -e '^./[[:alnum:]]+$'
             echo "switched `pwd`"
             cd ./api-gateway
             ./gradlew build
