@@ -1,14 +1,12 @@
-name: Docker Image CI
+name: CI/CD Workflow
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
-
-build:
+  build:
     runs-on: ubuntu-latest
     
     steps:
@@ -45,12 +43,12 @@ build:
       uses: actions/checkout@v2
 
     - name: Docker Login
-      run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
+      run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
 
-    # - name: Docker Push
-    #   run: |
-    #     echo "Running unit tests..."
-    #     cd api-gateway
-    #     docker push evaldas483/applicatus-api-gateway
+    - name: Docker Push
+      run: |
+        echo "Running unit tests..."
+        cd api-gateway
+        docker push evaldas483/applicatus-api-gateway
 
   # Additional jobs can be added based on your GitLab CI/CD configuration.
