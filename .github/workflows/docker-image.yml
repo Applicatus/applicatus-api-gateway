@@ -21,8 +21,8 @@ jobs:
         echo "Running Build for Gateway Test"
         echo $JAVA_HOME
         cd api-gateway
-        ./gradlew clean build
         chmod +x gradlew
+        gradlew clean build
         echo "Build complete."
 
     - name: Unit Test
