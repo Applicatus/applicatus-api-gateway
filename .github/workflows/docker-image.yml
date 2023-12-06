@@ -32,7 +32,9 @@ jobs:
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
       - name: Run build with Gradle Wrapper
-        run: ./gradlew build
+        run: |
+            cd api-gateway
+            ./gradlew build
 
     # name: Unit Test
     #   run: |
