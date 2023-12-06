@@ -18,8 +18,8 @@ jobs:
         echo "Running Build for Gateway Test"
         echo $JAVA_HOME
         cd api-gateway
-        chmod +x gradlew
         ./gradlew clean build
+        chmod +x gradlew
         echo "Build complete."
 
     - name: Unit Test
@@ -29,21 +29,21 @@ jobs:
         mvn test
         echo "Code coverage test complete"
 
-  docker_push:
-    needs: build
-    runs-on: ubuntu-latest
+  # docker_push:
+  #   needs: build
+  #   runs-on: ubuntu-latest
     
-    steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
+  #   steps:
+  #   - name: Checkout Repository
+  #     uses: actions/checkout@v2
 
-    - name: Docker Login
-      run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+  #   - name: Docker Login
+  #     run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
 
-    - name: Docker Push
-      run: |
-        echo "Running unit tests..."
-        cd api-gateway
-        docker push evaldas483/applicatus-api-gateway
+  #   - name: Docker Push
+  #     run: |
+  #       echo "Running unit tests..."
+  #       cd api-gateway
+  #       docker push evaldas483/applicatus-api-gateway
 
   # Additional jobs can be added based on your GitLab CI/CD configuration.
