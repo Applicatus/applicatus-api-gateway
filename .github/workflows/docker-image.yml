@@ -20,7 +20,6 @@ jobs:
         mvn clean install -DskipTests -e
         echo "Running Build for Gateway Test"
         echo $JAVA_HOME
-        cd api-gateway
         chmod +x gradlew
         gradlew clean build
         echo "Build complete."
@@ -29,7 +28,7 @@ jobs:
       run: |
         echo "Running unit tests... This will take about 60 seconds."
         cd api-gateway
-        mvn test
+        gradlew test
         echo "Code coverage test complete"
 
   # docker_push:
