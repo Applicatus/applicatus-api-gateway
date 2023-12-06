@@ -33,12 +33,12 @@ jobs:
         uses: gradle/gradle-build-action@v2
       - name: Run build with Gradle Wrapper
         run: |
-            echo "switched `pwd`
+            echo "switched `pwd`"
             cd ../
-            echo "switched `pwd`
+            echo "switched `pwd`"
             cd ../
-            echo "switched `pwd`
-            cd /api-gateway
+            echo "switched `pwd`"
+            cd ./api-gateway
             ./gradlew build
 
     # name: Unit Test
