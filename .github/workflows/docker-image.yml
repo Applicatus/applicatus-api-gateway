@@ -17,11 +17,11 @@ jobs:
       run: |
         echo "Running Build"
         cd api-gateway
-        gradlew clean install -DskipTests -e
+        ./gradlew clean install -DskipTests -e
         echo "Running Build for Gateway Test"
         echo $JAVA_HOME
         chmod +x gradlew
-        gradlew clean build
+        ./gradlew clean build
         echo "Build complete."
 
     - name: Unit Test
