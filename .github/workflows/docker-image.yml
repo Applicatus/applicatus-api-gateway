@@ -15,6 +15,7 @@ jobs:
     - name: Build API Gateway
       run: |
         echo "Running Build"
+        Set-ExecutionPolicy -ExecutionPolicy Undefined -Scope LocalMachine
         cd api-gateway
         ./gradlew clean install -DskipTests -e
         echo "Running Build for Gateway Test"
