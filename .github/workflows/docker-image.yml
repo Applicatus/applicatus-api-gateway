@@ -12,22 +12,22 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v2
 
-    # - name: Build API Gateway
-    #   run: |
-    #     echo "Running Build"
-    #     cd api-gateway
-    #     ./gradlew clean install -DskipTests -e
-    #     echo "Running Build for Gateway Test"
-    #     echo $JAVA_HOME
-    #     chmod +x gradlew
-    #     ./gradlew clean build
-    #     echo "Build complete."
+    - name: Build API Gateway
+      run: |
+        echo "Running Build"
+        cd api-gateway
+        ./gradlew clean install -DskipTests -e
+        echo "Running Build for Gateway Test"
+        echo $JAVA_HOME
+        chmod +x gradlew
+        ./gradlew clean build
+        echo "Build complete."
 
-    # - name: Set up Java
-    #   uses: actions/setup-java@v2
-    #   with:
-    #     distribution: 'adopt'
-    #     java-version: '17'
+    - name: Set up Java
+      uses: actions/setup-java@v2
+      with:
+        distribution: 'adopt'
+        java-version: '17'
 
   
 
@@ -40,7 +40,7 @@ jobs:
         run: |
           Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
           echo "Execution Policy set to Bypass for this process."
-        # shell: pwsh
+        shell: pwsh
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
       - name: Run build with Gradle Wrapper
