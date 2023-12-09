@@ -42,8 +42,8 @@ jobs:
             echo "switched `pwd`"
             cd ./api-gateway
             echo "switched `pwd`"
-            gradle install
-            gradle build
+            gradlew install
+            gradlew clean build
 
     # name: Unit Test
     #   run: |
